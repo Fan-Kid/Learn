@@ -126,7 +126,7 @@ def _not_divisible(n):
 ### 4. 装饰器(Decorator)
  函数名字：`__name__`   
 `@`   
-> eg:
+eg:   
 ```
 import functools
 
