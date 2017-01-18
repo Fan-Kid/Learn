@@ -143,4 +143,55 @@ def log(func):
 
 
 ## 八、模块
+包含"__init__.py"的文件夹就是一个包，   
+"__init__.py"可以是一个空文件，也可以python代码   
+自己创建模块时不能和Python自带的模块名称冲突   
+
+### 1. 使用模块
+* 任何模块的第一个字符串都被视为模块的文档注释
+* `__author__ = 'name'` 把作者名写进去
+* 当在命令行运行`hello` 模块文件时，Python解释器会把一个特殊变量`__name__`置为`__main__`   
+* 作用域   
+    * 类似 `_xxx` 和 `__xxx` 这样的函数或变量就是非公开的（private）,不应该直接引用(**“不应该”而不是“不能”**)   
+    * 外部不需要引用的函数全部定义成`private`，只有外部需要引用的函数才可以定义为public   
+
+```
+def _private_1(name):
+    return 'Hello, %s' % name
+
+def _private_2(name):
+    return 'hi, %s' % name
+
+# 公开greeting函数
+def greeting(name): 
+    if len(name) > 3:
+        return _private_1(name)
+    else:
+        return _private_2(name)
+
+```
+
+### 2. 安装第三方模块
+* 包管理工具 `pip`, 若未安装则重新安装python，勾选pip和Add python.exe to path   
+* `pip install Pillow # 安装处理图像的工具库`   
+
+```
+from PIL import Image
+im = Image.open('test.jpg')
+print(im.format, im.size, im.mode)
+
+im.thumbnail((200,100))
+im.save('thumb.jpg', 'JPEG')
+
+```   
+* 加载模块时，Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块,
+  搜索路径房在`sys`模块的`path`变量中
+* 修改搜索路径：   
+    * 直接修改 `sys.path`, 运行时修改，运行结束后实效
+        ```
+        >>> import sys
+        >>> sys.path.append('path')
+        ```   
+    * 设置环境变量`PYTHONPATH`,只需添加你自己的搜索路径，Python自身的搜索路径不受影响
+
 
