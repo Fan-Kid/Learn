@@ -187,10 +187,12 @@ im.save('thumb.jpg', 'JPEG')
 * 加载模块时，Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块,
   搜索路径房在`sys`模块的`path`变量中
 * 修改搜索路径：   
-    * 直接修改 `sys.path`, 运行时修改，运行结束后实效
+    * 直接修改 `sys.path`, 运行时修改，运行结束后实效   
+
         ```
         >>> import sys
         >>> sys.path.append('path')
+
         ```   
     * 设置环境变量`PYTHONPATH`,只需添加你自己的搜索路径，Python自身的搜索路径不受影响
 
